@@ -1,3 +1,6 @@
+import { useState } from "react";
+import { useRouter } from "next/dist/client/router";
+import { Cookie } from "universal-cookie";
 import { LockClosedIcon } from "@heroicons/react/solid";
 
 export default function Auth() {
