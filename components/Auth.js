@@ -1,4 +1,4 @@
-import { LockClosedIcon } from "@heroicons/react";
+import { LockClosedIcon } from "@heroicons/react/solid";
 
 export default function Auth() {
   return (
