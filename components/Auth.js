@@ -10,7 +10,7 @@ export default function Auth() {
           src="https://tailwindui.com/img/logos/workflow-mark-indigo-600.svg"
           alt="Workflow"
         />
-        <h2 className="mt-6 text-center text-3xl font-extrabold text-gray-900">
+        <h2 className="mt-6 text-center text-3xl font-extrabold text-white">
           Sign in to your account
         </h2>
       </div>
@@ -41,14 +41,11 @@ export default function Auth() {
           </div>
         </div>
 
-        <div className="flex items-center justify-between">
+        <div className="flex items-center justify-center">
           <div className="text-sm">
-            <a
-              href="#"
-              className="font-medium text-indigo-600 hover:text-indigo-500"
-            >
-              Forgot your password?
-            </a>
+            <span className="cursor-pointer font-medium text-white hover:text-indigo-500">
+              change mode ?
+            </span>
           </div>
         </div>
 
