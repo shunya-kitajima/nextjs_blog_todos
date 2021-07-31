@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useRouter } from "next/dist/client/router";
+import { useRouter } from "next/router";
 import { Cookie } from "universal-cookie";
 import { LockClosedIcon } from "@heroicons/react/solid";
 
