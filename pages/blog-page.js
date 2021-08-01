@@ -38,5 +38,6 @@ export async function getStaticProps() {
   const filteredPosts = await getAllPostsData();
   return {
     props: { filteredPosts },
+    revalidate: 3,
   };
 }
