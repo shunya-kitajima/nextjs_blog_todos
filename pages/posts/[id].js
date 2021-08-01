@@ -7,7 +7,7 @@ import { getAllPostIds, getPostData } from "../../lib/posts";
 export default function Post({ post }) {
   const router = useRouter();
 
-  if (!post) {
+  if (router.isFallback || !post) {
     return <div>Loading...</div>;
   }
 
