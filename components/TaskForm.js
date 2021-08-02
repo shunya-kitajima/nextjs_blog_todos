@@ -55,7 +55,7 @@ export default function TaskForm({ taskCreated }) {
           type="text"
           value={selectedTask.title}
           onChange={(e) =>
-            setSelectedTask({ ...setSelectedTask, title: e.target.value })
+            setSelectedTask({ ...selectedTask, title: e.target.value })
           }
         />
         <button
