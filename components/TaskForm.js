@@ -54,9 +54,13 @@ export default function TaskForm({ taskCreated }) {
           className="text-black mb-8 px-2 py-1"
           type="text"
           value={selectedTask.title}
-          onChange={(e) =>
-            setSelectedTask({ ...selectedTask, title: e.target.value })
-          }
+          onChange={(e) => {
+            if (e.target.value) {
+              setSelectedTask({ ...selectedTask, title: e.target.value });
+            } else {
+              setSelectedTask({ id: 0, title: "" });
+            }
+          }}
         />
         <button
           type="submit"
