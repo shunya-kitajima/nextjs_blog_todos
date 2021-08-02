@@ -40,6 +40,7 @@ export default function Task({ task, taskDeleted }) {
           fill="none"
           viewBox="0 0 24 24"
           stroke="currentColor"
+          onClick={() => setSelectedTask(task)}
         >
           <path
             strokeLinecap="round"
