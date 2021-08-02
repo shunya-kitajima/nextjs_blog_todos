@@ -18,6 +18,7 @@ export default function TaskPage({ staticfilteredTasks }) {
   );
   useEffect(() => {
     mutate();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
