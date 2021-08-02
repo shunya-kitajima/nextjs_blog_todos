@@ -7,26 +7,34 @@ import Layout from "../../components/Layout";
 import { getAllTaskIds, getTaskData } from "../../lib/tasks";
 
 const fetcher = (url) => fetch(url).then((res) => res.json());
-const apiUrl = `${process.env.NEXT_PUBLIC_RESTAPI_URL}api/list-task/`;
 
-export default function Task({ task }) {
+export default function Task({ staticTask, id }) {
   const router = useRouter();
-
+  const { data: task, mutate } = useSWR(
+    `${process.env.NEXT_PUBLIC_RESTAPI_URL}api/detail-task/${id}`,
+    fetcher,
+    {
+      initialData: staticTask,
+    }
+  );
+  useEffect(() => {
+    mutate();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
   if (router.isFallback || !task) {
     return <div>Loading...</div>;
   }
 
   return (
     <Layout title={task.title}>
-      <p className="m-4">
+      <span className="mb-4">
         {"ID : "}
         {task.id}
-      </p>
+      </span>
       <p className="mb-4 text-xl font-bold">{task.title}</p>
       <p className="mb-12">{task.created_at}</p>
-      <p className="px-10">{task.content}</p>
-      <Link href="/blog-page" passHref>
-        <div className="flex cursor-pointer mt-12">
+      <Link href="/task-page" passHref>
+        <div className="flex cursor-pointer mt-8">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             className="h-6 w-6 mr-3"
@@ -41,7 +49,7 @@ export default function Task({ task }) {
               d="M11 19l-7-7 7-7m8 14l-7-7 7-7"
             />
           </svg>
-          <span>Back to blog-page</span>
+          <span>Back to task-page</span>
         </div>
       </Link>
     </Layout>
@@ -58,10 +66,11 @@ export async function getStaticPaths() {
 }
 
 export async function getStaticProps({ params }) {
-  const { post: post } = await getTaskData(params.id);
+  const { task: staticTask } = await getTaskData(params.id);
   return {
     props: {
-      post,
+      id: staticTask.id,
+      staticTask,
     },
     revalidate: 3,
   };
