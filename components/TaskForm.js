@@ -29,7 +29,7 @@ export default function TaskForm({ taskCreated }) {
   const update = async (e) => {
     e.preventDefault();
     await fetch(
-      `${process.env.NEXT_PUBLIC_RESTAPI_URL}api/tasks/${selectedTask.id}`,
+      `${process.env.NEXT_PUBLIC_RESTAPI_URL}api/tasks/${selectedTask.id}/`,
       {
         method: "PUT",
         body: JSON.stringify({ title: selectedTask.title }),
