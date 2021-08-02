@@ -1,8 +1,13 @@
+import { useEffect } from "react";
 import Link from "next/link";
 import { useRouter } from "next/router";
+import useSWR from "swr";
 
 import Layout from "../../components/Layout";
 import { getAllTaskIds, getTaskData } from "../../lib/tasks";
+
+const fetcher = (url) => fetch(url).then((res) => res.json());
+const apiUrl = `${process.env.NEXT_PUBLIC_RESTAPI_URL}api/list-task/`;
 
 export default function Task({ task }) {
   const router = useRouter();
@@ -41,4 +46,23 @@ export default function Task({ task }) {
       </Link>
     </Layout>
   );
+}
+
+export async function getStaticPaths() {
+  const paths = await getAllTaskIds();
+
+  return {
+    paths,
+    fallback: true,
+  };
+}
+
+export async function getStaticProps({ params }) {
+  const { post: post } = await getTaskData(params.id);
+  return {
+    props: {
+      post,
+    },
+    revalidate: 3,
+  };
 }
