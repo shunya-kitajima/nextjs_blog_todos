@@ -13,7 +13,7 @@ const apiUrl = `${process.env.NEXT_PUBLIC_RESTAPI_URL}api/list-task/`;
 
 export default function TaskPage({ staticfilteredTasks }) {
   const { data: tasks, mutate } = useSWR(apiUrl, fetcher, {
-    initialData: staticfilteredTasks,
+    fallbackData: staticfilteredTasks,
   });
   const filteredTasks = tasks?.sort(
     (a, b) => new Date(b.created_at) - new Date(a.created_at)
